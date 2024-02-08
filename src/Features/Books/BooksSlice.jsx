@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {v4 as uuidv4} from "uuid"
 
 const initialBooks ={
     books:[
-        {id: 1, title: "Love Bangladesh", author: 'xyz'},
-        {id: 2, title: "Love India", author: 'xyz'},
-        {id: 3, title: "Hate Pakistan", author: 'xyz'},
+        {id: uuidv4(), title: "Love Bangladesh", author: 'xyz'},
+        {id: uuidv4(), title: "Love India", author: 'xyz'},
+        {id: uuidv4(), title: "Hate Pakistan", author: 'xyz'},
     ]
 }
 
@@ -19,9 +20,17 @@ reducers:{
     deleteBook:(state, action)=>{
         const id = action.payload;
         state.books = state.books.filter(book=> book.id !== id)
+    },
+    updateBook:(state, action)=>{
+        const {id, title, author} = action.payload;
+        const isBookExists = state.books.filter(book=> book.id === id)
+        if(isBookExists){
+            isBookExists.title = title
+            isBookExists.author = author
+        }
     }
 }
 })
 
-export const {showBooks, addBook, deleteBook} = BookSlice.actions;
+export const {showBooks, addBook, deleteBook, updateBook} = BookSlice.actions;
 export default BookSlice.reducer;

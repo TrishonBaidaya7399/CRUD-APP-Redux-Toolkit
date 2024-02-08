@@ -5,6 +5,7 @@ import Navbar from "../Component/Shared/Navbar";
 import ViewBooks from "../Features/Books/ViewBooks/ViewBooks";
 import AddBook from "../Features/Books/AddBook/AddBook";
 import Footer from "../Component/Shared/Footer";
+import EditBook from "../Features/Books/EditBook/EditBook";
 
 const Router = () => {
     return (
@@ -15,6 +16,7 @@ const Router = () => {
         <Route path="/" element={<Home/>}>Home</Route>
         <Route path="/show-books" element={<ViewBooks/>}>Show Books</Route>
         <Route path="/add-book" element={<AddBook/>}>Add Book</Route>
+        <Route path="/edit-book" element={<EditBook/>}>Edit Book</Route>
         <Route path="*" element={<ErrorPage/>}>Error Page</Route>
        </Routes>
        </main>

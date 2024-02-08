@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addBook } from "../BooksSlice";
 import { useNavigate } from "react-router-dom";
+import {v4 as uuidv4} from "uuid"
 
 function AddBook() {
   const [ title, setTitle ] = useState("");
   const [ author, setAuthor ] = useState("");
-  const numberOfBooks = useSelector((state)=> state.booksReducers.books.length)
 const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = (e)=>{
     e.preventDefault();
     // console.log(title, author);
-    const bookData = {id: numberOfBooks+1, title, author}
+    const bookData = {id: uuidv4(), title, author}
     console.log(bookData);
     dispatch(addBook(bookData))
     navigate("/show-books", {replace:true})
